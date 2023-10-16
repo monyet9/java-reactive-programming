@@ -21,6 +21,8 @@ public class LessonMono {
         // per ottenere i dati un publisher deve avere un sottoscrittore che consumi i dai .
         // in questo caso Mono ci offre diverse implementazione per abbonare un sottoscrittore ad un pubblicatore .
         editor.subscribe(i->System.out.println(i));
+
+        editor.subscribe(i->System.out.println(i));
         
     }
 }
