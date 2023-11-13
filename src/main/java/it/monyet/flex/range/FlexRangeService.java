@@ -1,6 +1,7 @@
 package it.monyet.flex.range;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -19,4 +20,22 @@ public class FlexRangeService {
         Flux<String> it= Flux.range(0,names.size()).map(i->names.get(i)).filter(name->name.contains("a"));
         return it;
     }
+
+
+    // posso trasformare un flex di item in un mono . Ad esempio ho bisogno di uno specifico item  nel mio flux
+    // la funzone da utilizzare è next()
+
+    public Mono<String> getNamesFromList(){
+        Flux<String> it= Flux.range(0,10).map(s->"hello number: "+s);
+
+        // con next converto la flux , precisamente l'item di una flux in mono
+        Mono<String> primeItem= it.next();
+
+        Mono<String> secondItems= it.filter(i-> i.contains("2")).next();
+
+        Mono.just(primeItem);
+
+        return primeItem;
+    }
+
 }
